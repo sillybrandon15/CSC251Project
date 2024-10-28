@@ -4,12 +4,14 @@ public class Project_brandon_carbajal
 {
    public static void main(String[] args)
    {
+      //Declaring variables
       int policyNumber, holderAge;
       String providerName, holderFirstName, holderLastName,
            holderSmokingStatus;
       double holderHeight, holderWeight;
       Scanner keyboard = new Scanner(System.in);
       
+      //Policy number input and validation
       do
       {
          System.out.print("Please enter the Policy Number: ");
@@ -21,17 +23,22 @@ public class Project_brandon_carbajal
          }
       } while (policyNumber <=0);
       
+      //Clearing the buffer
       keyboard.nextLine();
       
+      //Provider's name input
       System.out.print("\nPlease enter the Provider's Name: ");
       providerName = keyboard.nextLine();
       
+      //Policyholder's first name input 
       System.out.print("\nPlease enter the Policyholder’s First Name: ");
       holderFirstName = keyboard.nextLine();
       
+      //Policyholder's last name input
       System.out.print("\nPlease enter the Policyholder’s Last Name: ");
       holderLastName = keyboard.nextLine();
       
+      //Policyholder's age input and validation
       do
       {
          System.out.print("\nPlease enter the Policyholder’s Age: ");
@@ -43,8 +50,10 @@ public class Project_brandon_carbajal
          }
       } while (holderAge <=0);
       
+      //Clearing the buffer
       keyboard.nextLine();
       
+      //Policyholder's smoking status input and validation
       do
       {
          System.out.print("\nPlease enter the Policyholder’s Smoking Status (smoker/non-smoker): ");
@@ -58,6 +67,7 @@ public class Project_brandon_carbajal
          }
       } while (!(holderSmokingStatus.equalsIgnoreCase("smoker")) && !(holderSmokingStatus.equalsIgnoreCase("non-smoker")));
       
+      //Policyholder's height input and validation
       do
       {
          System.out.print("\nPlease enter the Policyholder’s Height (in inches): ");
@@ -68,7 +78,8 @@ public class Project_brandon_carbajal
             holderHeight = keyboard.nextDouble();;
          }
       } while (holderHeight <=0);
-
+      
+      //Policyholder's weight input and validation
       do
       {
          System.out.print("\nPlease enter the Policyholder’s Weight (in pounds): ");
@@ -80,10 +91,12 @@ public class Project_brandon_carbajal
          }
       } while (holderWeight <=0);
       
+      //Creating an instance of the Policy class with all the appropriate arguments
       Policy policy = new Policy(policyNumber, providerName, holderFirstName,
                                  holderLastName, holderAge, holderSmokingStatus,
                                  holderHeight, holderWeight);
       
+      //Displaying the information
       System.out.println("\nPolicy Number: " + policy.getPolicyNumber());
       System.out.println("Provider Name: " + policy.getProviderName());
       System.out.println("Policyholder’s First Name: " + policy.getHolderFirstName());
