@@ -253,7 +253,7 @@ public class Policy
       
       if (holderAge > 50)
          price += 75;
-      if (holderSmokingStatus == "smoker")
+      if (holderSmokingStatus.equals("smoker"))
          price += 100;
       if (bmi > 35)
          price += ((bmi - 35) * 20);
