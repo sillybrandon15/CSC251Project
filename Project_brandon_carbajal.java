@@ -6,7 +6,7 @@ public class Project_brandon_carbajal
    public static void main(String[] args) throws IOException
    {
       //Declaring variables
-      int policyNumber, holderAge;
+      int policyNumber, holderAge, totalSmoker = 0, totalNonSmoker = 0;
       String providerName, holderFirstName, holderLastName,
              holderSmokingStatus;
       double holderHeight, holderWeight;
@@ -56,6 +56,15 @@ public class Project_brandon_carbajal
          System.out.println("Policyholder’s Weight: " + currentPolicy.getHolderWeight() + " pounds");
          System.out.printf("Policyholder’s BMI: %.2f\n", currentPolicy.calculateBMI());
          System.out.printf("Policy Price: $%,.2f\n", currentPolicy.calculatePolicyPrice());
+         //Detects whether the current policy holder is a smoker or non-smoker, and adds one to a counter 
+         if(currentPolicy.getHolderSmokingStatus().equals("smoker"))
+            totalSmoker++;
+         else if(currentPolicy.getHolderSmokingStatus().equals("non-smoker"))
+            totalNonSmoker++;
       }
+      
+      //Displays the total number of policies with a smoker and the ones with a non-smoker
+      System.out.println("\nThe number of policies with a smoker is: " + totalSmoker);
+      System.out.println("The number of policies with a non-smoker is: " + totalNonSmoker);
    }
 }
