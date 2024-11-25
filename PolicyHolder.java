@@ -237,6 +237,11 @@ public class PolicyHolder
       return roundedPrice;
    }
    
+   /**
+    * Returns a string with the status of the current fields
+    *
+    * @return A string containing the status of the current fields
+    */
    public String toString()
    {
       String str = "Policyholder's First Name " + holderFirstName +
