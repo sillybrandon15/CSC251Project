@@ -26,9 +26,7 @@ public class PolicyHolder
       holderHeight = 0;
       holderWeight = 0;
    }
-   
-   
-   
+
    /**
     * Constructor that accepts all relevant arguments to fully initialize the instance
     *

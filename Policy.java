@@ -34,6 +34,16 @@ public class Policy
       policyCount++;
    }
    
+   /**
+    * Constructor that receives a PolicyHolder object
+    *
+    * @param reference the incoming PolicyHolder object
+    */
+   public Policy(PolicyHolder incoming)
+   {
+      holder = new PolicyHolder(incoming);
+   }
+   
    /*
    ------------Methods(Mutator)--------------
    */
@@ -44,9 +54,9 @@ public class Policy
     * 
     * @param temp The new PolicyHolder object for the class
     */
-   public void setPolicyHolder(PolicyHolder temp)
+   public void setPolicyHolder(PolicyHolder incoming)
    {
-      holder = temp;
+      holder = incoming;
    }
    
    /**
