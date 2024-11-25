@@ -7,6 +7,7 @@ public class Policy
    //Declaring the class' attributes
    private int policyNumber;
    private String providerName;
+   private static int policyCount = 0;
    
    
    /*
@@ -18,6 +19,7 @@ public class Policy
    {
       policyNumber = 0;
       providerName = "";
+      policyCount++;
    }
    /**
     * Constructor that accepts all relevant arguments to fully initialize the instance
@@ -29,6 +31,7 @@ public class Policy
    {
       policyNumber = num;
       providerName = provider;
+      policyCount++;
    }
    
    /*
@@ -79,12 +82,30 @@ public class Policy
       return providerName;
    }
    
+   /*
+   ----------Methods(Other)---------------
+   */
+   
+   /**
+    * Returns a string containing information about the fields
+    * 
+    * @return A string of the current status of the fields
+    */
    public String toString()
    {
       String str = "Policy Number: " + policyNumber +
                    "Provider Name: " + providerName;
       
       return str;
+   }
+   /**
+    * Returns the current count of the static variable policyCount
+    * 
+    * @return An integer containing the number of policy objects created
+    */
+   public static int getCounter()
+   {
+      return policyCount;
    }
    
 }
