@@ -36,35 +36,30 @@ public class Project_brandon_carbajal
          holderWeight = inputFile.nextDouble();
          
          //Declares a new Policy object and adds it to policyArray
-         policyArray.add(new Policy(policyNumber, providerName, holderFirstName,
+         PolicyHolder tempPolicy = new PolicyHolder(holderFirstName,
                                     holderLastName, holderAge, holderSmokingStatus,
-                                    holderHeight, holderWeight));
+                                    holderHeight, holderWeight);
+         policyArray.add(new Policy(policyNumber, providerName, tempPolicy));
       }
       
       for(int i = 0; i < policyArray.size(); i++)
       {
          //Creates temp object to use Policy class methods
          Policy currentPolicy = policyArray.get(i);
+         PolicyHolder currentHolder = currentPolicy.getPolicyHolder();
          //Displaying the information
-         System.out.println("\nPolicy Number: " + currentPolicy.getPolicyNumber());
-         System.out.println("Provider Name: " + currentPolicy.getProviderName());
-         System.out.println("Policyholder’s First Name: " + currentPolicy.getHolderFirstName());
-         System.out.println("Policyholder’s Last Name: " + currentPolicy.getHolderLastName());
-         System.out.println("Policyholder’s Age: " + currentPolicy.getHolderAge());
-         System.out.println("Policyholder’s Smoking Status: " + currentPolicy.getHolderSmokingStatus());
-         System.out.println("Policyholder’s Height: " + currentPolicy.getHolderHeight() + " inches");
-         System.out.println("Policyholder’s Weight: " + currentPolicy.getHolderWeight() + " pounds");
-         System.out.printf("Policyholder’s BMI: %.2f\n", currentPolicy.calculateBMI());
-         System.out.printf("Policy Price: $%,.2f\n", currentPolicy.calculatePolicyPrice());
+         System.out.println("\n" + currentPolicy);
+         System.out.println(currentHolder);
          //Detects whether the current policy holder is a smoker or non-smoker, and adds one to a counter 
-         if(currentPolicy.getHolderSmokingStatus().equals("smoker"))
+         if(currentHolder.getHolderSmokingStatus().equals("smoker"))
             totalSmoker++;
-         else if(currentPolicy.getHolderSmokingStatus().equals("non-smoker"))
+         else if(currentHolder.getHolderSmokingStatus().equals("non-smoker"))
             totalNonSmoker++;
       }
       
       //Displays the total number of policies with a smoker and the ones with a non-smoker
-      System.out.println("\nThe number of policies with a smoker is: " + totalSmoker);
+      System.out.println("\nThere were " + Policy.getCounter() + " Policy objects created.");
+      System.out.println("The number of policies with a smoker is: " + totalSmoker);
       System.out.println("The number of policies with a non-smoker is: " + totalNonSmoker);
    }
 }

@@ -38,6 +38,32 @@ public class PolicyHolder
     * @param weight The policyholder's weight
     */
     
+   public PolicyHolder(String firstName, String lastName,
+                       int age, String smoker, 
+                       double height, double weight)
+   {
+      holderFirstName = firstName;
+      holderLastName = lastName;
+      holderAge = age;
+      holderSmokingStatus = smoker;
+      holderHeight = height;
+      holderWeight = weight;
+   }
+   
+   /**
+    * Constructor that accepts a PolicyHolder object =
+    *
+    * @param copy A PolicyHolder object to be copied
+    */
+   public PolicyHolder(PolicyHolder copy)
+   {
+      holderFirstName = copy.holderFirstName;
+      holderLastName = copy.holderLastName;
+      holderAge = copy.holderAge;
+      holderSmokingStatus = copy.holderSmokingStatus;
+      holderHeight = copy.holderHeight;
+      holderWeight = copy.holderWeight;
+   }
    /*
    ------------Methods(Mutator)--------------
    */
@@ -177,7 +203,9 @@ public class PolicyHolder
     */
    public double calculateBMI()
    {
-      return ((holderWeight * 703) / (holderHeight * holderHeight));
+      double bmi = (holderWeight * 703) / (holderHeight * holderHeight);
+      double roundedBMI = Math.round(bmi * 100.0) / 100.0; 
+      return (roundedBMI);
    }
    
    /**
@@ -205,7 +233,8 @@ public class PolicyHolder
       if (bmi > 35)
          price += ((bmi - 35) * 20);
       
-      return price;
+      double roundedPrice = Math.round(price * 100.0) / 100.0;
+      return roundedPrice;
    }
    
    public String toString()
@@ -214,10 +243,10 @@ public class PolicyHolder
                    "\nPolicyholder's Last Name: " + holderLastName + 
                    "\nPolicyholder's Age: " + holderAge +
                    "\nPolicyholder's Smoking Status (Y/N): " + holderSmokingStatus +
-                   "\nPolicyholder's Height: " + holderHeight +
-                   "\nPolicyholder's Weight: " + holderWeight +
+                   "\nPolicyholder's Height: " + holderHeight + " inches" +
+                   "\nPolicyholder's Weight: " + holderWeight + " pounds" +
                    "\nPolicyholder's BMI: " + calculateBMI() +
-                   "\nPolicy Price: " + calculatePolicyPrice();
+                   "\nPolicy Price: $" + calculatePolicyPrice();
       return str;
    
    }

@@ -26,22 +26,14 @@ public class Policy
     *
     * @param num The user's policy number
     * @param provider The user's policy provider company
+    * @param incoming The incoming PolicyHolder object
     */
-   public Policy(int num, String provider)
+   public Policy(int num, String provider, PolicyHolder incoming)
    {
       policyNumber = num;
       providerName = provider;
+      holder = incoming;
       policyCount++;
-   }
-   
-   /**
-    * Constructor that receives a PolicyHolder object
-    *
-    * @param reference the incoming PolicyHolder object
-    */
-   public Policy(PolicyHolder incoming)
-   {
-      holder = new PolicyHolder(incoming);
    }
    
    /*
@@ -125,7 +117,7 @@ public class Policy
    public String toString()
    {
       String str = "Policy Number: " + policyNumber +
-                   "Provider Name: " + providerName;
+                   "\nProvider Name: " + providerName;
       
       return str;
    }
