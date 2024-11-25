@@ -17,7 +17,7 @@ public class PolicyHolder
    /**
     * No-arg constructor
     */
-   public PolicyHolder
+   public PolicyHolder()
    {
       holderFirstName = "";
       holderLastName = "";
@@ -208,5 +208,19 @@ public class PolicyHolder
          price += ((bmi - 35) * 20);
       
       return price;
+   }
+   
+   public String toString()
+   {
+      String str = "Policyholder's First Name " + holderFirstName +
+                   "\nPolicyholder's Last Name: " + holderLastName + 
+                   "\nPolicyholder's Age: " + holderAge +
+                   "\nPolicyholder's Smoking Status (Y/N): " + holderSmokingStatus +
+                   "\nPolicyholder's Height: " + holderHeight +
+                   "\nPolicyholder's Weight: " + holderWeight +
+                   "\nPolicyholder's BMI: " + calculateBMI() +
+                   "\nPolicy Price: " + calculatePolicyPrice();
+      return str;
+   
    }
 }
