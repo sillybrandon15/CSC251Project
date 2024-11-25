@@ -8,7 +8,7 @@ public class Policy
    private int policyNumber;
    private String providerName;
    private static int policyCount = 0;
-   
+   private PolicyHolder holder;
    
    /*
    ----------Constructors---------------
@@ -38,6 +38,17 @@ public class Policy
    ------------Methods(Mutator)--------------
    */
    
+   
+   /**
+    * Sets the current PolicyHolder object
+    * 
+    * @param temp The new PolicyHolder object for the class
+    */
+   public void setPolicyHolder(PolicyHolder temp)
+   {
+      holder = temp;
+   }
+   
    /**
     * Sets the policy number
     * 
@@ -61,6 +72,16 @@ public class Policy
    /*
    ----------Methods(Accessors)---------------
    */
+   
+   /**
+    * Returns the current PolicyHolder object
+    * 
+    * @return The current PolicyHolder object
+    */
+   public PolicyHolder getPolicyHolder()
+   {
+      return new PolicyHolder(holder);
+   }
    
    /**
     * Gets the policy number
