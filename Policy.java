@@ -8,6 +8,7 @@ public class Policy
    private int policyNumber;
    private String providerName;
    
+   
    /*
    ----------Constructors---------------
    */
@@ -76,6 +77,14 @@ public class Policy
    public String getProviderName()
    {
       return providerName;
+   }
+   
+   public String toString()
+   {
+      String str = "Policy Number: " + policyNumber +
+                   "Provider Name: " + providerName;
+      
+      return str;
    }
    
 }
