@@ -13,10 +13,12 @@ public class Project_brandon_carbajal
       
       // Creating a file object to create a pathway to the desired .txt file
       File myFile = new File("PolicyInformation.txt");
+      
       /* Creating a scanner object with a reference to the File object so that we can
        * use the Scanner class' methods to read information from the actual file
        */
       Scanner inputFile = new Scanner(myFile);
+      
       // Creating a ArrayList to hold all the Policy class objects
       var policyArray = new ArrayList<Policy>();
       
@@ -25,35 +27,32 @@ public class Project_brandon_carbajal
       {
          //Populates the variables by reading input from the file
          policyNumber = inputFile.nextInt();
-         inputFile.nextLine();
+         if(inputFile.hasNext())
+            inputFile.nextLine();// buffer
          providerName = inputFile.nextLine();
          holderFirstName = inputFile.nextLine();
          holderLastName = inputFile.nextLine();
          holderAge = inputFile.nextInt();
-         inputFile.nextLine();
+         if(inputFile.hasNext())
+            inputFile.nextLine();// buffer
          holderSmokingStatus = inputFile.nextLine();
          holderHeight = inputFile.nextDouble();
          holderWeight = inputFile.nextDouble();
-         
+            
          //Declares a new Policy object and adds it to policyArray
-         PolicyHolder tempPolicy = new PolicyHolder(holderFirstName,
-                                    holderLastName, holderAge, holderSmokingStatus,
-                                    holderHeight, holderWeight);
-         policyArray.add(new Policy(policyNumber, providerName, tempPolicy));
+         policyArray.add(new Policy(policyNumber, providerName, new PolicyHolder(holderFirstName,
+                                                                holderLastName, holderAge, holderSmokingStatus,
+                                                                holderHeight, holderWeight)));
       }
       
-      for(int i = 0; i < policyArray.size(); i++)
+      for(Policy currentPolicy : policyArray)
       {
-         //Creates temp object to use Policy class methods
-         Policy currentPolicy = policyArray.get(i);
-         PolicyHolder currentHolder = currentPolicy.getPolicyHolder();
          //Displaying the information
          System.out.println("\n" + currentPolicy);
-         System.out.println(currentHolder);
          //Detects whether the current policy holder is a smoker or non-smoker, and adds one to a counter 
-         if(currentHolder.getHolderSmokingStatus().equals("smoker"))
+         if(currentPolicy.getPolicyHolder().getHolderSmokingStatus().equalsIgnoreCase("smoker"))
             totalSmoker++;
-         else if(currentHolder.getHolderSmokingStatus().equals("non-smoker"))
+         else if(currentPolicy.getPolicyHolder().getHolderSmokingStatus().equalsIgnoreCase("non-smoker"))
             totalNonSmoker++;
       }
       

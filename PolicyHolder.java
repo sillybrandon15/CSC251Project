@@ -38,16 +38,16 @@ public class PolicyHolder
     * @param weight The policyholder's weight
     */
     
-   public PolicyHolder(String firstName, String lastName,
-                       int age, String smoker, 
-                       double height, double weight)
+   public PolicyHolder(String holderFirstName, String holderLastName,
+                       int holderAge, String holderSmokingStatus, 
+                       double holderHeight, double holderWeight)
    {
-      holderFirstName = firstName;
-      holderLastName = lastName;
-      holderAge = age;
-      holderSmokingStatus = smoker;
-      holderHeight = height;
-      holderWeight = weight;
+      this.holderFirstName = holderFirstName;
+      this.holderLastName = holderLastName;
+      this.holderAge = holderAge;
+      this.holderSmokingStatus = holderSmokingStatus;
+      this.holderHeight = holderHeight;
+      this.holderWeight = holderWeight;
    }
    
    /**
@@ -57,12 +57,12 @@ public class PolicyHolder
     */
    public PolicyHolder(PolicyHolder copy)
    {
-      holderFirstName = copy.holderFirstName;
-      holderLastName = copy.holderLastName;
-      holderAge = copy.holderAge;
-      holderSmokingStatus = copy.holderSmokingStatus;
-      holderHeight = copy.holderHeight;
-      holderWeight = copy.holderWeight;
+      this.holderFirstName = copy.getHolderFirstName();
+      this.holderLastName = copy.getHolderLastName();
+      this.holderAge = copy.getHolderAge();
+      this.holderSmokingStatus = copy.getHolderSmokingStatus();
+      this.holderHeight = copy.getHolderHeight();
+      this.holderWeight = copy.getHolderWeight();
    }
    /*
    ------------Methods(Mutator)--------------
@@ -203,38 +203,8 @@ public class PolicyHolder
     */
    public double calculateBMI()
    {
-      double bmi = (holderWeight * 703) / (holderHeight * holderHeight);
-      double roundedBMI = Math.round(bmi * 100.0) / 100.0; 
-      return (roundedBMI);
-   }
-   
-   /**
-    * Calculates and returns the price of the policy
-    *
-    * @return A double containing the price of the policy based on the current holder's weight and height
-    */
-
-   public double calculatePolicyPrice()
-   {
-      //Declaring the variables
-      /*NOTE: BMI is given a variable here in order to avoid having stale data.
-              Declaring BMI here makes sure all the variables in the calculation
-              are up-to-date. */
-      double base = 600,
-             bmi = ((holderWeight * 703) / (holderHeight * holderHeight)),
-             price = 0;
-      
-      price = base;
-      
-      if (holderAge > 50)
-         price += 75;
-      if (holderSmokingStatus.equals("smoker"))
-         price += 100;
-      if (bmi > 35)
-         price += ((bmi - 35) * 20);
-      
-      double roundedPrice = Math.round(price * 100.0) / 100.0;
-      return roundedPrice;
+      final double FACTOR = 703;
+      return ((holderWeight * FACTOR) / (holderHeight * holderHeight));
    }
    
    /**
@@ -244,15 +214,12 @@ public class PolicyHolder
     */
    public String toString()
    {
-      String str = "Policyholder's First Name " + holderFirstName +
+      return String.format("Policyholder's First Name " + holderFirstName +
                    "\nPolicyholder's Last Name: " + holderLastName + 
                    "\nPolicyholder's Age: " + holderAge +
                    "\nPolicyholder's Smoking Status (Y/N): " + holderSmokingStatus +
                    "\nPolicyholder's Height: " + holderHeight + " inches" +
                    "\nPolicyholder's Weight: " + holderWeight + " pounds" +
-                   "\nPolicyholder's BMI: " + calculateBMI() +
-                   "\nPolicy Price: $" + calculatePolicyPrice();
-      return str;
-   
+                   "\nPolicyholder's BMI: %.2f", calculateBMI());
    }
 }

@@ -19,6 +19,7 @@ public class Policy
    {
       policyNumber = 0;
       providerName = "";
+      holder = new PolicyHolder();
       policyCount++;
    }
    /**
@@ -32,7 +33,8 @@ public class Policy
    {
       policyNumber = num;
       providerName = provider;
-      holder = incoming;
+      //Creating a "deep copy"; important for security
+      holder = new PolicyHolder(incoming);
       policyCount++;
    }
    
@@ -48,7 +50,8 @@ public class Policy
     */
    public void setPolicyHolder(PolicyHolder incoming)
    {
-      holder = incoming;
+      //Make a deep copy so that the incoming object will not be affected
+      this.holder = new PolicyHolder(incoming);
    }
    
    /**
@@ -58,7 +61,7 @@ public class Policy
     */
    public void setPolicyNumber(int num)
    {
-      policyNumber = num;
+      this.policyNumber = num;
    }
    
    /**
@@ -68,7 +71,7 @@ public class Policy
     */
    public void setProviderName(String provider)
    {
-      providerName = provider;
+      this.providerName = provider;
    }
    
    /*
@@ -105,9 +108,37 @@ public class Policy
       return providerName;
    }
    
-   /*
-   ----------Methods(Other)---------------
-   */
+    /*
+    ----------Methods(Other)---------------
+    */
+   
+   /**
+    * Calculates and returns the price of the policy
+    *
+    * @return A double containing the price of the policy based on the current holder's weight and height
+    */
+
+   public double calculatePolicyPrice()
+   {
+      //Declaring the variables
+      final double BASE_PRICE = 600,
+                   AGE_FEE = 75,
+                   SMOKING_FEE = 100,
+                   OVER_BMI_FEE = 20;
+      final int AGE_LIMIT = 50,
+                BMI_LIMIT = 35;
+      double price = BASE_PRICE;
+      
+      //If statement structure to determine fees added to base price
+      if (holder.getHolderAge() > AGE_LIMIT)
+         price += AGE_FEE;
+      if (holder.getHolderSmokingStatus().equals("smoker"))
+         price += SMOKING_FEE;
+      if (holder.calculateBMI() > BMI_LIMIT)
+         price += ((holder.calculateBMI() - BMI_LIMIT) * OVER_BMI_FEE);
+      
+      return price;
+   }
    
    /**
     * Returns a string containing information about the fields
@@ -116,10 +147,10 @@ public class Policy
     */
    public String toString()
    {
-      String str = "Policy Number: " + policyNumber +
-                   "\nProvider Name: " + providerName;
-      
-      return str;
+      return String.format("Policy Number: " + policyNumber +
+                   "\nProvider Name: " + providerName +
+                   "\n" + holder + 
+                   "\nPolicy Price: $%.2f", calculatePolicyPrice());
    }
    /**
     * Returns the current count of the static variable policyCount
